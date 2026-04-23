@@ -1,65 +1,110 @@
-import Image from "next/image";
+import { Navbar } from '@/components/Navbar';
+import { Hero } from '@/components/Hero';
+import { Metadata } from 'next';
+import { Zap } from 'lucide-react';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'BDMCH Transformation Strategy | Pehchanly Digital Solutions',
+  description: 'A comprehensive 24-month digital growth and branding strategy for Blue Diamond Medical College & Hospital, Muzaffarpur — by Pehchanly Digital Solutions.',
+}
+
+// Simple static sections to avoid over-engineering the homepage
+const insideItems = [
+  {
+    num: "04",
+    color: "#EF4444",
+    label: "Problem Slides",
+    title: "What's Broken — Right Now",
+    desc: "A fully verified audit of bdmch.com found live on April 23, 2026. Lorem ipsum in hero sliders, crashing faculty pages, 15+ dead links, zero portal listings, and an incorrect college's legal notice on the news page.",
+  },
+  {
+    num: "13",
+    color: "#3B82F6",
+    label: "Strategy Slides",
+    title: "The 8-Pillar Growth Framework",
+    desc: "Website overhaul, SEO + AI/GEO indexing, social media launch, performance ads, PR establishment, community outreach, and Agentic AI automation — one complete system.",
+  },
+  {
+    num: "02",
+    color: "#EFA00B",
+    label: "Execution Slides",
+    title: "24-Month Roadmap & KPIs",
+    desc: "From emergency fixes (Day 1) to market dominance (Month 24). Clear KPIs: 150/150 seats filled, #1 search ranking in Muzaffarpur, 10,000+ social followers, AI citation by ChatGPT & Gemini.",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="flex flex-col w-full min-h-screen" style={{ background: "#0F172A" }}>
+      <Navbar />
+      <Hero />
+
+      {/* ── "What's Inside" Teaser ── */}
+      <section className="py-28 border-t" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
+        <div className="container mx-auto px-6 max-w-5xl">
+
+          {/* Section label */}
+          <div className="text-center mb-16">
+            <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.3em] rounded-full border mb-4"
+              style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)", color: "#4A7FA5" }}>
+              Inside the Deck
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              19 Slides. One Complete Strategy.
+            </h2>
+          </div>
+
+          {/* 3 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            {insideItems.map((item, i) => (
+              <div key={i} className="rounded-2xl p-7 border relative overflow-hidden flex flex-col"
+                style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.06)" }}>
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: item.color }} />
+                <div className="flex items-baseline gap-2 mb-6">
+                  <span className="text-5xl font-black" style={{ color: item.color, fontFamily: "var(--font-outfit)" }}>{item.num}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: item.color + "80" }}>{item.label}</span>
+                </div>
+                <h3 className="font-bold text-white text-lg mb-3">{item.title}</h3>
+                <p className="text-sm leading-relaxed flex-1" style={{ color: "#6B7280" }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Final CTA banner */}
+          <div className="rounded-3xl p-10 text-center relative overflow-hidden border"
+            style={{ background: "linear-gradient(135deg, #0B2545 0%, #131B2E 100%)", borderColor: "rgba(6,182,212,0.15)" }}>
+            {/* Glow */}
+            <div className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse at center, rgba(6,182,212,0.06) 0%, transparent 70%)" }} />
+            <div className="relative z-10">
+              <p className="text-sm mb-3 font-mono uppercase tracking-widest" style={{ color: "#4A7FA5" }}>
+                Interactive · Keyboard navigable · 19 slides
+              </p>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-8" style={{ fontFamily: "var(--font-outfit)" }}>
+                Ready to explore the full strategy?
+              </h3>
+              <a href="/presentation"
+                className="inline-flex items-center gap-3 px-10 py-4 rounded-2xl font-bold text-black transition-all hover:opacity-90"
+                style={{ background: "#EFA00B", boxShadow: "0 0 40px rgba(239,160,11,0.25)" }}>
+                Open Presentation →
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer className="py-12 border-t" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-white text-sm">PEHCHANLY DIGITAL SOLUTIONS</span>
+          </div>
+          <div className="text-[10px] uppercase tracking-widest" style={{ color: "#374151" }}>
+            Confidential · BDMCH Strategy 2026 · pehchanly.com
+          </div>
         </div>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
